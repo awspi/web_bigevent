@@ -49,7 +49,7 @@ $(function(){
         data: $(this).serialize(),
         success: function(res){
           if(res.status!= 0){
-            return console.log(res.message);
+            return alert(res.message);
           }
           layer.msg('登录成功!',{
             time:400

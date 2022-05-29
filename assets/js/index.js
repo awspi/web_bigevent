@@ -20,7 +20,6 @@ function renderAvatar(user){
   let name =  user.nickname || user.username;
   $('#welcome').html(`欢迎!  ${name}`)
   if(user.user_pic!=null){
-    console.log('not null');
     $('.text-avatar').hide();
     $('.layui-nav-img').attr('src',user.user_pic).show();
   }else{
