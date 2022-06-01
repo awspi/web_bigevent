@@ -56,23 +56,18 @@ $(function(){
   })
   $('.layui-form').on('submit',function(e){
     e.preventDefault();
-    console.log('ok');
-    // let fd=new FormData($(this)[0]);
-    // fd.append('status',art_status)
-    // $image
-    // .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
-    //   width: 400,
-    //   height: 280
-    // })
-    // .toBlob(function(blob) {       // 将 Canvas 画布上的内容，转化为文件对象
-    //   // 得到文件对象后，进行后续的操作
-    //   fd.append('cover_img',blob)
-    // })
-    // fd.forEach((v,k)=>{
-    //   console.log((k));
-    //   console.log((v));
-    // })
-    // // publish(fd);
+    let fd=new FormData($(this)[0]);
+    fd.append('status',art_status)
+    $image
+    .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
+      width: 400,
+      height: 280
+    })
+    .toBlob(function(blob) {       // 将 Canvas 画布上的内容，转化为文件对象
+      // 得到文件对象后，进行后续的操作
+      fd.append('cover_img',blob)
+    })
+    publish(fd);
   })
   function publish(fd){
     $.ajax({
@@ -82,6 +77,7 @@ $(function(){
       contentType: false,
       processData: false,
       success:function(res){
+        console.log(res);
         if (res.status !== 0) {
           return layer.msg('发布文章失败！')
         }
